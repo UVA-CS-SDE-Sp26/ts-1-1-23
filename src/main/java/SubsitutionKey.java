@@ -1,8 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -11,7 +8,7 @@ import java.util.Scanner;
  * Takes in file and dechipers text based on
  * subsitution key.
  */
-public class SubsitutionKeyDechipherer {
+public class SubsitutionKey {
   // Key is the base char and value is the char that subsitutes that char in
   // decrypted message.
   private HashMap<Character, Character> subsitutionKey;
@@ -25,7 +22,7 @@ public class SubsitutionKeyDechipherer {
    * @exception IllegalArgumentException If file path led to an invalid file or led to
    *                                     invalid subsitution key.
    */
-  public SubsitutionKeyDechipherer(final String keyPath) throws IllegalArgumentException {
+  public SubsitutionKey(final String keyPath) throws IllegalArgumentException {
     // Verify file exists at all and begins scanning
     File keyFile;
     String baseLine;
@@ -53,10 +50,13 @@ public class SubsitutionKeyDechipherer {
     }
     HashSet<Character> baseSet = new HashSet<>();
     for (int lineIter = 0 ; lineIter < baseLine.length() ; lineIter++) {
-      if (baseSet.contains(baseLine.charAt(lineIter))) {
+      char baseChar = baseLine.charAt(lineIter);
+      if (baseSet.contains(baseChar)) {
+        System.out.println(baseChar);
         throw new IllegalArgumentException(
                 "Duplicate chareter in base line causing ambiguous subsitution key.");
       }
+      baseSet.add(baseChar);
     }
 
     // Actually sets up hash map
@@ -68,15 +68,27 @@ public class SubsitutionKeyDechipherer {
 
   /**
    * Runs a string through a subsitution key and return the result.
+   * If a character is not part of the subsitution key,
+   * it will simply be copied to the decrypted string.
    *
    * @param encryptedString String encrypted with given subsitution key.
    * @return Decrypted string.
    */
-  public String Dechiper(final String encryptedString) {
+  public String dechiper(final String encryptedString) {
     StringBuilder decryptedOutputStringBuilder = new StringBuilder(encryptedString.length());
+    // Goes char by char finding a valid subsitution char to put in decrypted output.
     for (int lineIter = 0 ; lineIter < encryptedString.length() ; lineIter++) {
-      char correspondingChar = subsitutionKey.get(encryptedString.charAt(lineIter));
-      decryptedOutputStringBuilder.setCharAt(lineIter, correspondingChar);
+      char encryptedChar = encryptedString.charAt(lineIter);
+      char decryptedChar;
+      // Char exists in subsitution key, and decrypted in accordance to subsitution key.
+      if (subsitutionKey.containsKey(encryptedChar)) {
+        decryptedChar = subsitutionKey.get(encryptedString.charAt(lineIter));
+      }
+      // Char doesn't exist in subsisitution key and directly inputted into decrypted output.
+      else {
+        decryptedChar = encryptedChar;
+      }
+      decryptedOutputStringBuilder.setCharAt(lineIter, decryptedChar);
     }
     return decryptedOutputStringBuilder.toString();
   }
