@@ -1,3 +1,20 @@
+/**
+ * Entry point for the TopSecret command-line utility.
+ *
+ * This class:
+ *  - Receives command-line arguments from the user
+ *  - Delegates argument parsing to UserInterfaceParser
+ *  - Delegates execution logic to RequestProcessor
+ *  - Handles user-facing error messages
+ *
+ * The program supports:
+ *    java topsecret
+ *    java topsecret <nn>
+ *    java topsecret <nn> <key>
+ *
+ * Errors caused by invalid arguments result in usage instructions being printed.
+ * Unexpected runtime errors are caught and displayed as error messages.
+ */
 
 /**
  * Commmand Line Utility
