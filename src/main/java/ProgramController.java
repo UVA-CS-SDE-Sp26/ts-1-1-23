@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +16,12 @@ public class ProgramController {
 
         //case1: no arguments --> list files
         if (args == null || args.length == 0) {
-            return formatFileMenu(fileOpener.getAvailableFiles());
+            try {
+                formatFileMenu(fileOpener.getAvailableFiles());
+            }
+            catch (FileNotFoundException ex) {
+                return "Error: data directory not found./n";
+            }
         }
 
         //case 2: parse numeric selection
@@ -26,7 +32,14 @@ public class ProgramController {
             return "Error: selection must be numeric./n";
         }
 
-        List<String> files = fileOpener.getAvailableFiles();
+
+        List<String> files;
+        try {
+            files = fileOpener.getAvailableFiles()
+        }
+        catch (FileNotFoundException ex) {
+            return "Error: data directory not found./n";
+        }
         if (files == null || files.isEmpty()) {
             return "Error: no files available./n";
         }
