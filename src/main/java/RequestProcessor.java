@@ -46,7 +46,7 @@ public class RequestProcessor {
             throw new IllegalArgumentException("Cipher key file not found: " + keyPath);
         }
 
-        SubstitutionKey key = new SubstitutionKey(keyPath);
+        SubstitutionKey key = new SubstitutionKey(opener,keyPath);
         return key.decipher(rawText);
     }
 
