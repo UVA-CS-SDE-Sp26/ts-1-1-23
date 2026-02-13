@@ -9,14 +9,13 @@ import java.util.Scanner;
  * Allows for deciphering of text substitution key.
  */
 public class SubstitutionKey {
-  // Key is the base char and value is the char that substitutes that char in
-  // decrypted message.
+  // Key is the chipher char and value is the base char that substitutes chipher char
   private HashMap<Character, Character> substitutionKey;
 
   /**
    * Verifies that given substitution key file exists and is in the below format.
    * -base character line-
-   * -subsituted character line-
+   * -chipher character line-
    *
    * @param keyPath File path to key that contains subsitution chiper
    * @exception IllegalArgumentException If file path led to an invalid file or led to
@@ -29,30 +28,31 @@ public class SubstitutionKey {
     // Verify file exists at all and begins scanning
     File keyFile;
     String baseLine;
-    String substituteLine;
+    String cipherLine;
     try {
       keyFile = new File(keyPath);
       Scanner keyScanner = new Scanner(keyFile);
       if (!keyScanner.hasNextLine()) {
         throw new IllegalArgumentException("Key file doesn't have any lines.");
       }
-      baseLine = keyScanner.nextLine();
+
+      cipherLine = keyScanner.nextLine();
       if (!keyScanner.hasNextLine()) {
         throw new IllegalArgumentException("Key file has only one line.");
       }
-      substituteLine = keyScanner.nextLine();
+      baseLine = keyScanner.nextLine();
       keyScanner.close();
     } catch (FileNotFoundException exception) {
       throw new IllegalArgumentException("Key path does not lead to a valid txt file.");
     }
 
     // Verify that lines extracted from file will work as a substitution key
-    if (substituteLine.length() != baseLine.length()) {
+    if (cipherLine.length() != baseLine.length()) {
       throw new IllegalArgumentException(
               "Base character line and substituted letter line don't have the same length.");
     }
     HashSet<Character> baseSet = new HashSet<>();
-    for (int lineIter = 0 ; lineIter < baseLine.length() ; lineIter++) {
+    for (int lineIter = 0; lineIter < baseLine.length() ; lineIter++) {
       char baseChar = baseLine.charAt(lineIter);
       if (baseSet.contains(baseChar)) {
         throw new IllegalArgumentException(
@@ -63,8 +63,8 @@ public class SubstitutionKey {
 
     // Actually sets up hash map
     substitutionKey = new HashMap<>();
-    for (int lineIter = 0 ; lineIter < baseLine.length() ; lineIter++) {
-      substitutionKey.put(baseLine.charAt(lineIter), substituteLine.charAt(lineIter));
+    for (int lineIter = 0; lineIter < baseLine.length() ; lineIter++) {
+      substitutionKey.put(baseLine.charAt(lineIter), cipherLine.charAt(lineIter));
     }
   }
 
@@ -88,7 +88,7 @@ public class SubstitutionKey {
     for (int lineIter = 0 ; lineIter < encryptedString.length() ; lineIter++) {
       char encryptedChar = encryptedString.charAt(lineIter);
       char decryptedChar;
-      // Char exists in substitution key, and decrypted in accordance to subsitution key.
+      // Char exists in substitution key, and decrypted in accordance to substitution key.
       if (substitutionKey.containsKey(encryptedChar)) {
         decryptedChar = substitutionKey.get(encryptedString.charAt(lineIter));
       }

@@ -7,9 +7,9 @@ of the class SubstitutionKey.
 On construction, the class will take in a path to a key file on construction and validate then
 generate a substitution key from the first two lines of the file.
 
-The first line in key files will represent the base characters.
-The second line in key files will represent the characters that will substitute the base characters
-directly above it.
+The first line in key files will represent the true characters.
+The second line in key files will represent the chipher characters that will be swapped out for
+true characters.
 
 i.e.
 Lets say file key.txt is used to construct a substitution key, and it holds:
@@ -19,9 +19,9 @@ ABC
 key.txt has base character line [abc]
 and substitution line [ABC]
 and this would map to a substitution key of
-a->A
-b->B
-c->C
+A->a
+B->b
+C->c
 
 Invalid keys involve files with less than 2 lines, files with duplicated characters in base
 character line, and files having substitution line and base character line mismatched in length.
