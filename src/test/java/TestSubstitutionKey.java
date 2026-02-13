@@ -37,7 +37,7 @@ public class TestSubstitutionKey {
   }
 
   @Test
-  public void IOThrowTest() throws IOException {
+  public void FileOpenerThrow() throws IOException {
     FileOpener throwKey = mock(FileOpener.class);
     when(throwKey.getFileLines(anyString())).thenThrow(IOException.class);
     Assertions.assertThrows(
@@ -138,7 +138,6 @@ public class TestSubstitutionKey {
                     "filler"));
   }
 
-
   // Decipher tests
   @Test
   public void nullExampleTest() throws IOException {
@@ -230,4 +229,6 @@ public class TestSubstitutionKey {
                     "KowaBunga"),
             "KowhBunnh");
   }
+
+  // Chiper Inpu
 }

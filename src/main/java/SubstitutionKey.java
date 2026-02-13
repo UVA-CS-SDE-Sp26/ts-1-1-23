@@ -11,7 +11,7 @@ import java.util.Scanner;
  * Allows for deciphering of text substitution key.
  */
 public class SubstitutionKey {
-  // Key is the cipher char and value is the base char that substitutes chipher char
+  // Key is the cipher char and value is the base char that substitutes cipher char
   private HashMap<Character, Character> substitutionKey;
 
   /**
@@ -20,8 +20,8 @@ public class SubstitutionKey {
    * -chipher character line-
    *
    * @param fileOpener The opener that will be used to open key
-   * @param keyPath File path to key that contains substitution cipher along /data path
-   * @exception IllegalArgumentException If file path led to an invalid file or led to
+   * @param keyPath File path to key that contains substitution cipher
+   * @exception IllegalArgumentException If file opener cannot extract from path or led to
    *                                     invalid substitution key.
    */
   public SubstitutionKey(
@@ -72,14 +72,13 @@ public class SubstitutionKey {
 
   /**
    * Runs a string through a substitution key,
-   * transposing each character to a new char using key and return the result.
+   * transposing each cipher character to a base char using key and return the result.
    * If a character is not part of the substitution key it will not be transposed
    * and will stay the same in the decrypted string.
    *
    * @param encryptedString String encrypted with given substitution key.
    * @return Decrypted string.
    */
-
   public String decipher(final String encryptedString) {
     if (encryptedString == null) {
       return "";

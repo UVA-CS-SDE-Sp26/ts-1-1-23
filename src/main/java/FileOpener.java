@@ -15,7 +15,6 @@ public interface FileOpener {
     /*
      * reads the entire content of a specific file from the data directory.
      * * param fileName is the name of the file to read (like, "house_data.csv").
-     * Do not include "data/" in this string; the handler adds it automatically.
      * returns a string containing the full text content of the file and
      * throws **IOException If the file cannot be found or read.
      */
