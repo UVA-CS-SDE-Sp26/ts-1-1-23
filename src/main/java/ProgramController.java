@@ -35,7 +35,7 @@ public class ProgramController {
 
         List<String> files;
         try {
-            files = fileOpener.getAvailableFiles()
+            files = fileOpener.getAvailableFiles();
         }
         catch (FileNotFoundException ex) {
             return "Error: data directory not found./n";
