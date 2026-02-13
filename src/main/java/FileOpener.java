@@ -1,4 +1,3 @@
-
 /* You are responsible for the part of the problem that reads data files.
 The program should expect files in a folder named data (in the same directory
 of the program, or in the root of your project folder.) When a request for a

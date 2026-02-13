@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -9,7 +11,7 @@ import java.util.Scanner;
  * Allows for deciphering of text substitution key.
  */
 public class SubstitutionKey {
-  // Key is the chipher char and value is the base char that substitutes chipher char
+  // Key is the cipher char and value is the base char that substitutes chipher char
   private HashMap<Character, Character> substitutionKey;
 
   /**
@@ -17,32 +19,32 @@ public class SubstitutionKey {
    * -base character line-
    * -chipher character line-
    *
-   * @param keyPath File path to key that contains subsitution chiper
+   * @param fileOpener The opener that will be used to open key
+   * @param keyPath File path to key that contains substitution cipher along /data path
    * @exception IllegalArgumentException If file path led to an invalid file or led to
-   *                                     invalid subsitution key.
+   *                                     invalid substitution key.
    */
-  public SubstitutionKey(final String keyPath) throws IllegalArgumentException {
+  public SubstitutionKey(
+          FileOpener fileOpener,
+          final String keyPath) throws IllegalArgumentException {
     if (keyPath == null) {
       throw new IllegalArgumentException("Key file path cannot be null.");
     }
-    // Verify file exists at all and begins scanning
-    File keyFile;
+    if (fileOpener == null) {
+      throw new IllegalArgumentException("File opener cannot be null.");
+    }
+    // Verify file has enough text
     String baseLine;
     String cipherLine;
     try {
-      keyFile = new File(keyPath);
-      Scanner keyScanner = new Scanner(keyFile);
-      if (!keyScanner.hasNextLine()) {
-        throw new IllegalArgumentException("Key file doesn't have any lines.");
-      }
+      List<String> fileLines = fileOpener.getFileLines(keyPath);
 
-      cipherLine = keyScanner.nextLine();
-      if (!keyScanner.hasNextLine()) {
-        throw new IllegalArgumentException("Key file has only one line.");
+      if (fileLines.size() < 2) {
+        throw new IllegalArgumentException("Key file does not have enough lines.");
       }
-      baseLine = keyScanner.nextLine();
-      keyScanner.close();
-    } catch (FileNotFoundException exception) {
+      baseLine = fileLines.get(0);
+      cipherLine = fileLines.get(1);
+    } catch (IOException exception) {
       throw new IllegalArgumentException("Key path does not lead to a valid txt file.");
     }
 
@@ -51,20 +53,20 @@ public class SubstitutionKey {
       throw new IllegalArgumentException(
               "Base character line and substituted letter line don't have the same length.");
     }
-    HashSet<Character> baseSet = new HashSet<>();
-    for (int lineIter = 0; lineIter < baseLine.length() ; lineIter++) {
-      char baseChar = baseLine.charAt(lineIter);
-      if (baseSet.contains(baseChar)) {
+    HashSet<Character> cipherSet = new HashSet<>();
+    for (int lineIter = 0; lineIter < cipherLine.length() ; lineIter++) {
+      char cipherChar = cipherLine.charAt(lineIter);
+      if (cipherSet.contains(cipherChar)) {
         throw new IllegalArgumentException(
-                "Duplicate character in base line causing ambiguous substitution key.");
+                "Duplicate character in cipher line causing ambiguous substitution key.");
       }
-      baseSet.add(baseChar);
+      cipherSet.add(cipherChar);
     }
 
     // Actually sets up hash map
     substitutionKey = new HashMap<>();
-    for (int lineIter = 0; lineIter < baseLine.length() ; lineIter++) {
-      substitutionKey.put(baseLine.charAt(lineIter), cipherLine.charAt(lineIter));
+    for (int lineIter = 0; lineIter < cipherLine.length() ; lineIter++) {
+      substitutionKey.put(cipherLine.charAt(lineIter), baseLine.charAt(lineIter));
     }
   }
 
