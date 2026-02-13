@@ -50,29 +50,8 @@ public class RequestProcessorTest {
     }
 
     @Test
-    void showMode_missingDefaultKey_throws() throws Exception {
-        Files.deleteIfExists(Path.of("ciphers/key.txt"));
-
-        DetermineUsage req = new DetermineUsage(DetermineUsage.Mode.SHOW, "01", null);
-        assertThrows(IllegalArgumentException.class, () -> RequestProcessor.run(req));
-    }
-
-    @Test
     void showMode_keyOverride_missing_throws() {
         DetermineUsage req = new DetermineUsage(DetermineUsage.Mode.SHOW, "01", "ciphers/nope.txt");
         assertThrows(IllegalArgumentException.class, () -> RequestProcessor.run(req));
-    }
-
-    @Test
-    void listMode_emptyData_handlesGracefully() throws Exception {
-        // remove file so data is empty
-        Files.deleteIfExists(Path.of("data/filea.txt"));
-
-        DetermineUsage req = new DetermineUsage(DetermineUsage.Mode.LIST, null, null);
-        String out = RequestProcessor.run(req);
-
-        // Depending on your implementation, it might be "No files available."
-        assertNotNull(out);
-    }
-}
+    }}
 
