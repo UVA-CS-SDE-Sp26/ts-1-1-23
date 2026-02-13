@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class FileOpenerImplementation implements FileOpener {
@@ -47,18 +48,22 @@ public class FileOpenerImplementation implements FileOpener {
     @Override
     public List<String> getAvailableFiles() throws FileNotFoundException {
         File folder = new File("data");
-        ArrayList<String> dirList = new ArrayList<String>();
-        File[] files = folder.listFiles();
-        if (files.length == 0){
-            System.out.println("No files in directory.");
-            return null;
-        }
-        for (File file : files){
-            dirList.add(file.getName());
+        return (ArrayList<String>)getDir(folder);
         }
 
+    public List<String> getDir(File file){
+        ArrayList<String> dirList = new ArrayList<String>();
+        File[] files = file.listFiles();
+        if(files == null){
+            return null;
+        }
+        for (File singfile : files){
+            dirList.add(singfile.getName());
+        }
         return dirList;
     }
+
+
 }
 
 
