@@ -6,7 +6,7 @@ Team:
 Role | Member                    | Responsibility
 A    | Bradley Ayieko (pgc4zz)   | User Interface / CLI
 B    | Karim (qna3tx)            | File Handler
-C    | Tugce                     | Program Control
+C    | Tugce Yaylaci (vgy2hp)    | Program Control
 D    | Jianwen Ding (yrb8xt)     | Cipher / Decryption
 
 Commands:
