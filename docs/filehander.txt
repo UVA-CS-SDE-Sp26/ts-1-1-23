@@ -1,6 +1,6 @@
 karim #qna3tx
 
-Our team uses the FileOpenerImplementation class as the exclusive
+Our team uses the Shared.FileOpenerImplementation class as the exclusive
 tool for accessing external data (the files) as a part of the methods
 associated with the class. My plan was for the team to use .getFileContent(String fileName) to parse through the
 file given (fileName). For files with a lot of the data they could use .getFileLines(String fileName) in order

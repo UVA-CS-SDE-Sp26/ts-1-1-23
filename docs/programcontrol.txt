@@ -1,16 +1,16 @@
 Program Control - Tucge
 
-Purpose: The ProgramController class connects command-line arguments to the FileOpener and SubstitutionKey components. It does not directly access the file system. It coordinates program flow and ensures proper error handling.
+Purpose: The Homework2.ProgramController class connects command-line arguments to the Shared.FileOpener and Shared.SubstitutionKey components. It does not directly access the file system. It coordinates program flow and ensures proper error handling.
 
 Responsibilities:
 1. If no arguments are provided:
-        - Request available files from FileOpener
+        - Request available files from Shared.FileOpener
         - Display them in numbered format starting at 01
 
 2. If one argument is provided:
         - Parse the numeric selection
         - Validate range
-        - Request file contents from FileOpener
+        - Request file contents from Shared.FileOpener
         - Return the contents
 
 3. If two arguments are provided:
@@ -28,10 +28,10 @@ Responsibilities:
 Design Decisions:
 - File numbering begins at 01 and uses two-digit formatting
 - Index mapping is selection minus 1
-- ProgramController does not directly access disk files
-- Cipher functionality is delegated to SubstitutionKey
+- Homework2.ProgramController does not directly access disk files
+- Cipher functionality is delegated to Shared.SubstitutionKey
 
 Testing Plan:
 - Unit tests use a FakeFileOpener to avoid direct disk access
 - Tests verify file listing, selection validation, content return, and error handling
-- Each logical branch in ProgramController is tested
+- Each logical branch in Homework2.ProgramController is tested

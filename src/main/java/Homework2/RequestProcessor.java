@@ -1,7 +1,13 @@
+package Homework2;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+
+import Shared.FileOpener;
+import Shared.FileOpenerImplementation;
+import Shared.SubstitutionKey;
 
 public class RequestProcessor {
 
@@ -27,7 +33,7 @@ public class RequestProcessor {
         int index = parseTwoDigitIndex(req.getFileNumber(), files.size());
         String fileName = files.get(index);
 
-        // FileOpenerImplementation expects full relative path
+        // Core.FileOpenerImplementation expects full relative path
         String rawText = opener.getFileContent("data/" + fileName);
 
         // Determine key usage

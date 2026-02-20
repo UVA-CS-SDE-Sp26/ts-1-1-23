@@ -1,8 +1,8 @@
-TopSecret Ciper 2/13/2026
+Homework2.TopSecret Ciper 2/13/2026
 Jianwen Ding yrb8xt
 
 This program will support the decryption of substitution ciphers, and it will do so through the use
-of the class SubstitutionKey.
+of the class Shared.SubstitutionKey.
 
 On construction, the class will take in a path to a key file on construction and validate then
 generate a substitution key from the first two lines of the file.
@@ -28,7 +28,7 @@ Thus ciphered text ABBCCA would be decrypted into abbcca.
 Invalid keys involve files with less than 2 lines, files with duplicated characters in base
 character line, and files having substitution line and base character line mismatched in length.
 
-The method decipher in SubstitutionKey returns a decrypted string from an encrypted string,
+The method decipher in Shared.SubstitutionKey returns a decrypted string from an encrypted string,
 using the substitution key generated upon construction with key file.
 
 Any characters not represented in base character line will simply remain the same in the

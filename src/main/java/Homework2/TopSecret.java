@@ -1,10 +1,12 @@
+package Homework2;
+
 /**
- * Entry point for the TopSecret command-line utility.
+ * Entry point for the HW2.TopSecret command-line utility.
  *
  * This class:
  *  - Receives command-line arguments from the user
- *  - Delegates argument parsing to UserInterfaceParser
- *  - Delegates execution logic to RequestProcessor
+ *  - Delegates argument parsing to HW2.UserInterfaceParser
+ *  - Delegates execution logic to HW2.RequestProcessor
  *  - Handles user-facing error messages
  *
  * The program supports:

@@ -1,12 +1,14 @@
+package Homework2;
+
 /**
- * Parses and validates command-line arguments for the TopSecret program.
+ * Parses and validates command-line arguments for the HW2.TopSecret program.
  *
  * This class is responsible for:
  *  - Interpreting the raw String[] args passed into main()
  *  - Validating argument count and format
  *  - Ensuring file numbers follow the required two-digit format
  *  - Ensuring optional cipher key paths are not blank
- *  - Constructing a DetermineUsage object that represents the user's request
+ *  - Constructing a HW2.DetermineUsage object that represents the user's request
  *
  * The parser throws IllegalArgumentException when arguments are invalid.
  * It does not execute program logic — it only prepares structured input

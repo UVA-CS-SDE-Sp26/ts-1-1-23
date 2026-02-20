@@ -5,6 +5,9 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import Homework2.DetermineUsage;
+import Homework2.RequestProcessor;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RequestProcessorTest {

@@ -1,8 +1,11 @@
+package Homework2;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
+
+import Shared.FileOpener;
+import Shared.SubstitutionKey;
 
 public class ProgramController {
     private final FileOpener fileOpener;

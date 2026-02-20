@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.Test;
+
+import Homework2.DetermineUsage;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DetermineUsageTest {

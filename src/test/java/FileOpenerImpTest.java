@@ -1,16 +1,16 @@
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 
-import static java.nio.file.Files.createFile;
+import Shared.FileOpenerImplementation;
+
 import static org.junit.jupiter.api.Assertions.*;
-/* JUNIT: Running this program will make a new file in docs, then test the FileOpenerImplementation.java methods
+/* JUNIT: Running this program will make a new file in docs, then test the Core.FileOpenerImplementation.java methods
 and assert that they equal the contents of the new file.
  */
 
-public class TestFileOpenerImp {
+public class FileOpenerImpTest {
     private void createFile(File file, String content) throws IOException {
         // Make sure the parent folder exists (e.g., "docs/")
         if (file.getParentFile() != null) {
@@ -22,7 +22,7 @@ public class TestFileOpenerImp {
         writer.close();
     }
     @Test
-    public void Test() throws IOException { //tests all three methods for FileOpenerImplementation  getFileContent(), getFileLines(), getAvailableFiles()
+    public void Test() throws IOException { //tests all three methods for Core.FileOpenerImplementation  getFileContent(), getFileLines(), getAvailableFiles()
         int i = 0;
         File dir = new File("docs");
         File[] files = dir.listFiles();

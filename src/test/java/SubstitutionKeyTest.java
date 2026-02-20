@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 
+import Shared.FileOpener;
+import Shared.SubstitutionKey;
+
 import static org.mockito.Mockito.*;
 
 /**
- * Tests the class SubstitutionKey.
+ * Tests the class Core.SubstitutionKey.
  */
-public class TestSubstitutionKey {
+public class SubstitutionKeyTest {
   // Validate basic file input
   @Test
   public void nullKeyTest() {

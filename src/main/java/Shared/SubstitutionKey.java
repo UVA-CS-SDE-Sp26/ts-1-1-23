@@ -1,10 +1,9 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+package Shared;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Represents a substitution key taken from a file.

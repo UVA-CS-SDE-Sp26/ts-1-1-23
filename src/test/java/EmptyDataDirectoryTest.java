@@ -1,8 +1,11 @@
 import org.junit.jupiter.api.*;
-import java.io.File;
+
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import Homework2.DetermineUsage;
+import Homework2.RequestProcessor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,7 +49,7 @@ public class EmptyDataDirectoryTest {
     void listMode_whenNoFiles_doesNotCrash() throws Exception {
         DetermineUsage req = new DetermineUsage(DetermineUsage.Mode.LIST, null, null);
 
-        // If your RequestProcessor returns a message or empty string, either is fine.
+        // If your HW2.RequestProcessor returns a message or empty string, either is fine.
         // We just want "no crash" behavior.
         String out = RequestProcessor.run(req);
 

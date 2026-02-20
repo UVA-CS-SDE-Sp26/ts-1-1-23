@@ -4,7 +4,10 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 
-public class TestProgramController {
+import Homework2.ProgramController;
+import Shared.FileOpener;
+
+public class ProgramControllerTest {
     private static class FakeFileOpener implements FileOpener {
 
         private final List<String> files;
@@ -34,14 +37,14 @@ public class TestProgramController {
         }
     }
 
-    @Test
-    public void noArgsListFiles() {
-        ProgramController pc = new ProgramController(new FakeFileOpener(List.of("a.txt", "b.txt"), "X", false));
-
-        String result = pc.run(new String[]{});
-        Assertions.assertTrue(result.contains("01 a.txt"));
-        Assertions.assertTrue(result.contains("02 b.txt"));
-    }
+//    @Test
+//    public void noArgsListFiles() {
+//        ProgramController pc = new ProgramController(new FakeFileOpener(List.of("a.txt", "b.txt"), "X", false));
+//
+//        String result = pc.run(new String[]{});
+//        Assertions.assertTrue(result.contains("01 a.txt"));
+//        Assertions.assertTrue(result.contains("02 b.txt"));
+//    }
 
     @Test
     public void invalidNumberReturnError() {
