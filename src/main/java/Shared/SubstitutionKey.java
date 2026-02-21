@@ -9,7 +9,7 @@ import java.util.List;
  * Represents a substitution key taken from a file.
  * Allows for deciphering of text substitution key.
  */
-public class SubstitutionKey {
+public class SubstitutionKey implements CipherKey {
   // Key is the cipher char and value is the base char that substitutes cipher char
   private HashMap<Character, Character> substitutionKey;
 
@@ -79,6 +79,7 @@ public class SubstitutionKey {
    * @exception IllegalArgumentException Thrown if encrypted string is null.
    * @return Decrypted string.
    */
+  @Override
   public String decipher(final String encryptedString) throws IllegalArgumentException {
     if (encryptedString == null) {
       throw new IllegalArgumentException("Encrypted string cannot be null.");

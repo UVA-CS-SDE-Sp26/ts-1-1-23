@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+import Shared.CipherKey;
 import Shared.FileOpener;
 import Shared.FileOpenerImplementation;
 import Shared.SubstitutionKey;
@@ -52,7 +53,7 @@ public class RequestProcessor {
             throw new IllegalArgumentException("Cipher key file not found: " + keyPath);
         }
 
-        SubstitutionKey key = new SubstitutionKey(opener,keyPath);
+        CipherKey key = new SubstitutionKey(opener,keyPath);
         return key.decipher(rawText);
     }
 
